@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>펱타시스템 시안</title>
+    
+        <style>
+            body {
+              margin: 0;
+            }
+            
+            #cover {
+              position: relative;
+              width: 100%;
+              height: 100vh; /* 100% of viewport height */
+              overflow: hidden;
+            }
+            
+            #video {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
+              height: auto;
+              z-index: -1;
+              background-color: black;
+            }
+            
+            #overlay {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 100;
+            }
+            #overlay2 {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 1;
+              
+              
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
+              height: auto;
+              background-color: rgba(0, 0, 0, 0.5);
+               
+            }
+              
+          </style>
+        </head>
+        <body>
+          <div id="cover">
+            <video id="video" autoplay loop muted>
+              <source src="hero3.mp4" type="video/mp4">
+            </video>
+            <img id="overlay" src="v_text.png" alt="Overlay Image">
+            <div id="overlay2" src="paa.png" alt="Overlay Image"></div>
+          </div>
+          <div id="content" style="text-align: center;" class="v"><img src="s_01.png"></div>
+        </body>
+      </html>
+     
+
+     
+  
+        
+        
+		
+	
+ 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>스크롤 한번 할 때마다 각 섹션이 가득 차는 반응형 홈페이지</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      color: #ffffff;
+    }
+    
+    #section1 {
+       
+      position: relative;
+
+
+              width: 100%;
+              height: 100vh; /* 100% of viewport height */
+              overflow: hidden;
+    }
+    #cover {
+              position: relative;
+              width: 100%;
+              height: 100vh; /* 100% of viewport height */
+              overflow: hidden;
+            }
+            
+            #video {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
+              height: auto;
+              z-index: -1;
+              background-color: black;
+            }
+            
+            #overlay {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 100;
+            }
+            #overlay2 {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              
+              transform: translate(-50%, -50%);
+              z-index: 1;
+              
+              
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
+              height: auto;
+              background-color: rgba(0, 0, 0, 0.5);
+               
+            }
+                   
+    #section2 {
+      background-color: #F2F2F2;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section3 {
+      background-color: #F8F8F8;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section4 {
+      background-color: #white;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section5 {
+      background-color: #F8F8F8;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section6 {
+      background-color: #white;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section7 {
+      background-color: #F3F4F7;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section8 {
+      background-color: #F3F4F7;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    #section8 {
+      background-color: #404951;
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 100% of viewport height */
+      overflow: hidden;
+    }
+    
+    
+    /* 스크린 크기가 768px 이하일 때 */
+    @media screen and (max-width: 768px) {
+      section {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="section1">
+
+     
+        <video id="video" autoplay loop muted>
+          <source src="hero2.mp4" type="video/mp4">
+        </video>
+        <img id="overlay" src="v_text.png" alt="Overlay Image">
+        <div id="overlay2" src="paa.png" alt="Overlay Image"></div>
+       
+
+  </section>
+  <section id="section2"><img id="overlay" src="02.png" alt="Overlay Image"></section>
+  <section id="section3"><img id="overlay" src="03.png" alt="Overlay Image"></section>
+  <section id="section4"><img id="overlay" src="04.png" alt="Overlay Image"></section>
+  <section id="section5"><img id="overlay" src="05.png" alt="Overlay Image"></section>
+  <section id="section6">
+    <video id="video" autoplay loop muted>
+        <source src="hero6.mp4" type="video/mp4">
+      </video>
+      <img id="overlay" src="066.png" alt="Overlay Image">
+      <!-- <div id="overlay2" src="paa.png" alt="Overlay Image"></div> -->
+  </section>
+  <section id="section7"><img id="overlay" src="07.png" alt="Overlay Image"></section>
+  <section id="section8"><img id="overlay" src="08.png" alt="Overlay Image"></section>
+  <section id="section8"><img id="overlay" src="09.png" alt="Overlay Image"></section>
+
+  
+  <script>
+    const sections = document.querySelectorAll('section');
+    let currentSectionIndex = 0;
+    
+    function setSectionHeight() {
+      const windowHeight = window.innerHeight;
+      for (let i = 0; i < sections.length; i++) {
+        sections[i].style.height = `${windowHeight}px`;
+      }
+    }
+    
+    function setCurrentSectionIndex() {
+      for (let i = 0; i < sections.length; i++) {
+        const sectionTop = sections[i].offsetTop;
+        const sectionHeight = sections[i].offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSectionIndex = i;
+        }
+      }
+    }
+    
+    function scrollToNextSection() {
+      currentSectionIndex++;
+      if (currentSectionIndex >= sections.length) {
+        currentSectionIndex = 0;
+      }
+      const targetTop = sections[currentSectionIndex].offsetTop;
+      window.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
+    }
+    
+    setSectionHeight();
+    
+    window.addEventListener('resize', setSectionHeight);
+    window.addEventListener('scroll', setCurrentSectionIndex);
+    window.addEventListener('wheel', function(event) {
+      if (event.deltaY > 0) {
+        scrollToNextSection();
+      }
+    });
+    </script>
+    </body>
+    </html>
